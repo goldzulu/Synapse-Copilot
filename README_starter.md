@@ -4,7 +4,7 @@ This is an unofficial starter kit for the Synapse Copilot project. The Synapse C
 
 This starter kit is a fork of the original official repo at [https://github.com/Agile-Loop/Synapse-Copilot.git](https://github.com/Agile-Loop/Synapse-Copilot.git). It does not overwrite the original repository files and all additional files has a *_starter* prefix in the filename.
 
-The intention is to provide a quick starting point to follow along the YouTube video [Synapse Copilot Starter Tutorial](https://www.youtube.com/watch?v=xxx) that helps you to quickly understand the project structure by running an example scenario and later on perhaps a way to create your own scenario.
+The intention is to provide a quick starting point to follow along the YouTube video [Synapse Copilot Starter Tutorial](https://youtu.be/_ilJAjcGjvM) that helps you to quickly understand the project structure by running an example scenario and later on perhaps a way to create your own scenario.
 
 ## **Additional Files**
 Presently the following files are additionally included.
@@ -136,7 +136,7 @@ You should see something like:
 
 ## Next Steps
 
-Watch the YouTube video [Synapse Copilot Starter Tutorial](https://www.youtube.com/watch?v=xxx) if not already as i go through the code and explain a bit deeper on how things work.
+Watch the YouTube video [Synapse Copilot Starter Tutorial](https://youtu.be/_ilJAjcGjvM) if not already as i go through the code and explain a bit deeper on how things work.
 
 If there is enough interest i will also show how to create a scenario from scratch.
 
