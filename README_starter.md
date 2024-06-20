@@ -2,7 +2,7 @@
 
 This is an unofficial starter kit for the Synapse Copilot project. The Synapse Copilot is a tool that allows you to integrate Large Language Models (LLMs) with a wide array of APIs. 
 
-This starter kit is a fork of the original official [https://github.com/Agile-Loop/Synapse-Copilot.git](https://github.com/Agile-Loop/Synapse-Copilot.git). It does not overwrite the original repository files and all additional files has a *_starter* prefix in the filename.
+This starter kit is a fork of the original official repo at [https://github.com/Agile-Loop/Synapse-Copilot.git](https://github.com/Agile-Loop/Synapse-Copilot.git). It does not overwrite the original repository files and all additional files has a *_starter* prefix in the filename.
 
 The intention is to provide a quick starting point to follow along the YouTube video [Synapse Copilot Starter Tutorial](https://www.youtube.com/watch?v=xxx) that helps you to quickly understand the project structure by running an example scenario and later on perhaps a way to create your own scenario.
 
@@ -41,7 +41,7 @@ openai_api_key: "your_openai_api_key"
 
 ## **Step 2: Grab your Trello API key and token**
 
-1. Create a Trello account or login. The first thing you'll need to do is either login to your Trello 
+1. The first thing you'll need to do is either login to your Trello 
 account or create a new account.
 
 2. Create a workspace if not already. Remember the name given to the workspace.
@@ -52,7 +52,7 @@ account or create a new account.
 
 5. Go to the API section if not already, copy the API key once created and keep it safe.
 
-6. Since this is just used by you, you just need to manually generate a token for local testing by following the token link. Copy the token and keep it safe.
+6. Since this is just used by you, you just need to manually generate a token for local testing by following the token link in the API section. Copy the token and keep it safe.
 
 7. Open config_starter.yaml in the root of the project and replace the placeholders.
 
@@ -63,25 +63,29 @@ trello_token: "your_trello_token"
 
 ## **Step 3: Run the starter script**
 
-Now you are ready to run the example by typing
-
-NOTE: A few UserWarnings might come out regarding langchain, but you can ignore them. Probably AgileLoop will fix that at some point but it involves changing so of the code in the repository.
+Now you are ready to run the example by typing:
 
 ```bash
 python run_starter.py
 ```
 
-When asked:
+NOTE: A few UserWarnings might come out regarding langchain, but you can ignore them. Probably AgileLoop will fix that at some point but it involves changing so of the code in the repository.
 
-```Please select a scenario (trello/tmdb):```
+Once run you should see:
+
+```
+Please select a scenario (trello/tmdb):
+```
 
 Type ```trello``` and hit enter.
 
 When asked:
 
-```Example instruction: Create a new board with name 'abc_board'```
+```
+Example instruction: Create a new board with name 'abc_board'
 
-```Please input an instruction (Press ENTER to use the example instruction):```
+Please input an instruction (Press ENTER to use the example instruction):
+```
 
 Just hit enter to use the example instruction.
 
