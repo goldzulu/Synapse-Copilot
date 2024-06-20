@@ -1,5 +1,9 @@
-# **Synapse Copilot**
 
+A FORKED OF THE ORIGINAL REPOSITORY [https://github.com/goldzulu/Synapse-Copilot.git](https://github.com/goldzulu/Synapse-Copilot.git)
+
+More info about this fork can be found in the separate [README_starter.md](README_starter.md) file.
+
+# **Synapse Copilot**
 Welcome to the Synapse Copilot, your gateway to effortlessly integrating Large Language Models (LLMs) with a wide array of APIs! Follow this delightful guide to embark on your API scenario adventure. 🎉
 
 # **Quick Start**
