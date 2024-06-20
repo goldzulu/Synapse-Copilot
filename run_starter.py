@@ -1,12 +1,13 @@
 from helper import *
-import mysql.connector
-import random
 import os
 
 logger = logging.getLogger()
 
 def main():
+    # Load the configuration file
     config = yaml.load(open("config_starter.yaml", "r"), Loader=yaml.FullLoader)
+    
+    # Set the OpenAI API key
     os.environ["OPENAI_API_KEY"] = config["openai_api_key"]
 
     logging.basicConfig(
@@ -15,6 +16,7 @@ def main():
     )
     logger.setLevel(logging.INFO)
 
+    # Select a scenario
     scenario = input(
         "Please select a scenario (trello/tmdb): "
     )
@@ -24,12 +26,16 @@ def main():
 
     if scenario == "tmdb":
         os.environ["TMDB_ACCESS_TOKEN"] = config["tmdb_access_token"]
+        
+        # Get the API Spec and Authorization headers
         api_spec, headers = process_spec_file(
             file_path="specs/tmdb_oas.json", token=os.environ["TMDB_ACCESS_TOKEN"]
         )
+        # Example queries that will be used by default
         query_example = "Give me the number of movies directed by Sofia Coppola"
 
     elif scenario == "trello":
+        # read the trello api key and token from the config file and set them as environment variables
         key = config["trello_api_key"]
         token = config["trello_token"]
         
@@ -48,12 +54,15 @@ def main():
             key=os.environ["TRELLO_API_KEY"]
         )
 
+        # Replace the key and token placeholders in api_selector/*scenario*_base.txt file with actual key and token and save it as api_selector/*scenario*.txt
         replace_api_credentials(
             model="api_selector",
             scenario=scenario,
             actual_key=os.environ["TRELLO_API_KEY"],
             actual_token=os.environ["TRELLO_TOKEN"]
         )
+        
+        # Replace the key and token placeholders in planner/*scenario*_base.txt file with actual key and token and save it as planner/*scenario*.txt
         replace_api_credentials(
             model="planner",
             scenario=scenario,
@@ -71,7 +80,7 @@ def main():
 
     requests_wrapper = Requests(headers=headers)
 
-    # text-davinci-003
+    # Load the model and create an API LLM instance
     llm = OpenAI(model_name="gpt-4-turbo", temperature=0.0, max_tokens=2048)
     api_llm = ApiLLM(
         llm,
@@ -91,6 +100,8 @@ def main():
     logger.info(f"Query: {query}")
 
     start_time = time.time()
+    
+    # Run the query via the api_llm instance
     api_llm.run(query)
     logger.info(f"Execution Time: {time.time() - start_time}")
 
