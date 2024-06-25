@@ -33,11 +33,15 @@ pip install –r requirements.txt
 
 1. Create an OpenAI account and obtain your OpenAI API key [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys).
 
-2. Open config_starter.yaml and replace the placeholder with your OpenAI API key.
+2. Open ```config_starter.yaml``` and replace the placeholder with your OpenAI API key. Make sure the ```use_config_file``` is set to ```true``` to use values
+from the this file. 
 
 ```yaml
 openai_api_key: "your_openai_api_key"
 ```
+
+3. Alternatively, I've also added a way to use .env files instead, if you like to use .env file, just copy .env.local to .env and then fill up the keys for this
+and subsequent settings needed. Make sure ```config_starter.yaml``` ```use_config_file``` is set to ```false```.
 
 ## **Step 2: Grab your Trello API key and token**
 

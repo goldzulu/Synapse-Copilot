@@ -1,3 +1,7 @@
+# A flag to say if want to use this file for configuration
+# if true it will use this file else it will use the .env file
+use_config_file: true
+
 # openai_api_key: "YOUR OPENAI KEY"
 openai_api_key: "your_openai_api_key"
 

@@ -24,3 +24,5 @@ __pycache__/
 *.cache
 *.vscode
 .DS_Store
+
+.env

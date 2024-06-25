@@ -1,6 +1,9 @@
 # A Starter Kit version of the run.py file that can be used to run the API LLM for the Trello and TMDB scenarios.
 from helper import *
 import os
+import sys
+
+from dotenv import load_dotenv
 
 logger = logging.getLogger()
 
@@ -8,8 +11,23 @@ def main():
     # Load the configuration file
     config = yaml.load(open("config_starter.yaml", "r"), Loader=yaml.FullLoader)
     
-    # Set the OpenAI API key
-    os.environ["OPENAI_API_KEY"] = config["openai_api_key"]
+    # check to see if the configuration file is being used
+    if config is None:
+        logger.error("Could not load configuration file")
+        sys.exit(1)
+    else:
+        logger.info("Configuration file exist and loaded successfully")
+    
+    if config["use_config_file"] is True:
+        # iterate through the config file and set the environment variables
+        for key, value in config.items():
+            os.environ[key.upper()] = str(value)
+        logger.info("Environment variables set successfully to config values")
+    else:
+        load_dotenv()
+        logger.info("Environment variables set successfully to .env values")
+    logger.info("Make sure the keys are correctly set in the respective files!")
+        
 
     logging.basicConfig(
         format="%(message)s",
@@ -26,7 +44,7 @@ def main():
     api_spec, headers = None, None
 
     if scenario == "tmdb":
-        os.environ["TMDB_ACCESS_TOKEN"] = config["tmdb_access_token"]
+        #os.environ["TMDB_ACCESS_TOKEN"] = config["tmdb_access_token"]
         
         # Get the API Spec and Authorization headers
         api_spec, headers = process_spec_file(
@@ -36,18 +54,12 @@ def main():
         query_example = "Give me the number of movies directed by Sofia Coppola"
 
     elif scenario == "trello":
-        # read the trello api key and token from the config file and set them as environment variables
-        key = config["trello_api_key"]
-        token = config["trello_token"]
-        
-        os.environ["TRELLO_API_KEY"] = key
-        os.environ["TRELLO_TOKEN"] = token
             
         replace_api_credentials_in_json(
             ###to replace all the key and token variables in the specs file with real values
             scenario=scenario,
-            actual_key=key,
-            actual_token=token
+            actual_key=os.environ["TRELLO_API_KEY"],
+            actual_token=os.environ["TRELLO_TOKEN"]
         )
         api_spec, headers = process_spec_file(  ### to make the specs file minfy or smaller for for better processing
             file_path="specs/trello_oas.json",
@@ -84,7 +96,7 @@ def main():
     # Load the model and create an API LLM instance
     llm = OpenAI(model_name="gpt-4-turbo", temperature=0.0, max_tokens=2048)
     api_llm = ApiLLM(
-        llm,
+        llm=llm,
         api_spec=api_spec,
         scenario=scenario,
         requests_wrapper=requests_wrapper,
