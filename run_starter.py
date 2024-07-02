@@ -4,6 +4,7 @@ import os
 import sys
 
 from dotenv import load_dotenv
+from langchain_openai import AzureChatOpenAI
 
 logger = logging.getLogger()
 
@@ -93,8 +94,19 @@ def main():
 
     requests_wrapper = Requests(headers=headers)
 
-    # Load the model and create an API LLM instance
-    llm = OpenAI(model_name="gpt-4-turbo", temperature=0.0, max_tokens=2048)
+    # Load the environment and the model and create an API LLM instance
+    load_dotenv()
+    
+    # OpenAI API
+    # llm = OpenAI(model_name="gpt-4-turbo", temperature=0.0, max_tokens=2048)
+    
+    # AzureOpenAI API
+    llm = AzureChatOpenAI(
+        azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+        azure_deployment=os.environ["AZURE_OPENAI_DEPLOYMENT_NAME"],
+        openai_api_version=os.environ["AZURE_OPENAI_API_VERSION"],
+    )
+    
     api_llm = ApiLLM(
         llm=llm,
         api_spec=api_spec,

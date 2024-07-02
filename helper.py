@@ -8,6 +8,7 @@ from base64 import b64encode
 import spotipy
 from langchain.requests import Requests
 from langchain import OpenAI
+from langchain_openai import AzureChatOpenAI
 
 from utils import reduce_openapi_spec, ColorPrint
 from model import ApiLLM

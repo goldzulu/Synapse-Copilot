@@ -1,9 +1,16 @@
 # A flag to say if want to use this file for configuration
 # if true it will use this file else it will use the .env file
-use_config_file: true
+use_config_file: false
 
 # openai_api_key: "YOUR OPENAI KEY"
 openai_api_key: "your_openai_api_key"
+
+# azure api key
+AZURE_OPENAI_API_VERSION: "2023-05-15"
+AZURE_OPENAI_ENDPOINT: "https://AZURE_RESOURCE.openai.azure.com"
+AZURE_OPENAI_API_KEY: "your_azure_openai_api_key"
+AZURE_OPENAI_DEPLOYMENT_NAME: "GPT4"
+
 
 # your trello api key and token 
 trello_api_key: "your_trello_api_key"

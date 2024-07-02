@@ -4,7 +4,7 @@ import re
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts.prompt import PromptTemplate
-from langchain.llms.base import BaseLLM
+from langchain_core.language_models.base import BaseLanguageModel
 
 icl_examples = {}
 
@@ -46,12 +46,12 @@ Plan step 1: {agent_scratchpad}"""
 
 
 class Planner(Chain):
-    llm: BaseLLM
+    llm: BaseLanguageModel
     scenario: str
     planner_prompt: str
     output_key: str = "result"
 
-    def __init__(self, llm: BaseLLM, scenario: str, planner_prompt=PLANNER_PROMPT) -> None:
+    def __init__(self, llm: BaseLanguageModel, scenario: str, planner_prompt=PLANNER_PROMPT) -> None:
         super().__init__(llm=llm, scenario=scenario, planner_prompt=planner_prompt)
 
     @property

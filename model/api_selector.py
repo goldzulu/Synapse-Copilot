@@ -6,7 +6,7 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts.base import BasePromptTemplate
 from langchain.prompts.prompt import PromptTemplate
-from langchain.llms.base import BaseLLM
+from langchain_core.language_models.base import BaseLanguageModel
 
 from utils import ReducedOpenAPISpec, get_matched_endpoint
 
@@ -55,13 +55,13 @@ API calling 1: {agent_scratchpad}"""
 
 
 class APISelector(Chain):
-    llm: BaseLLM
+    llm: BaseLanguageModel
     api_spec: ReducedOpenAPISpec
     scenario: str
     api_selector_prompt: BasePromptTemplate
     output_key: str = "result"
 
-    def __init__(self, llm: BaseLLM, scenario: str, api_spec: ReducedOpenAPISpec) -> None:
+    def __init__(self, llm: BaseLanguageModel, scenario: str, api_spec: ReducedOpenAPISpec) -> None:
         api_name_desc = [
             f"{endpoint[0]} {endpoint[1].split('.')[0] if endpoint[1] is not None else ''}" for endpoint in api_spec.endpoints]
         api_name_desc = '\n'.join(api_name_desc)

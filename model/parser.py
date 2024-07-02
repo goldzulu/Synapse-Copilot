@@ -11,7 +11,7 @@ import tiktoken
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts.prompt import PromptTemplate
-from langchain.llms.base import BaseLLM
+from langchain_core.language_models.base import BaseLanguageModel
 
 from utils import simplify_json
 
@@ -183,7 +183,7 @@ class PythonREPL(BaseModel):
 class ResponseParser(Chain):
     """Implements Program-Aided Language Models."""
 
-    llm: BaseLLM
+    llm: BaseLanguageModel
     code_parsing_schema_prompt: PromptTemplate = None
     code_parsing_response_prompt: PromptTemplate = None
     llm_parsing_prompt: PromptTemplate = None
@@ -197,7 +197,7 @@ class ResponseParser(Chain):
     output_key: str = "result"
     return_intermediate_steps: bool = False
 
-    def __init__(self, llm: BaseLLM, api_path: str, api_doc: Dict, with_example: bool = False) -> None:
+    def __init__(self, llm: BaseLanguageModel, api_path: str, api_doc: Dict, with_example: bool = False) -> None:
         if 'responses' not in api_doc or 'content' not in api_doc['responses']:
             llm_parsing_prompt = PromptTemplate(
                 template=LLM_SUMMARIZE_TEMPLATE,
@@ -388,14 +388,14 @@ class ResponseParser(Chain):
 class SimpleResponseParser(Chain):
     """Implements Program-Aided Language Models."""
 
-    llm: BaseLLM
+    llm: BaseLanguageModel
     llm_parsing_prompt: PromptTemplate = None
     encoder: tiktoken.Encoding = None
     max_json_length: int = 1000
     output_key: str = "result"
     return_intermediate_steps: bool = False
 
-    def __init__(self, llm: BaseLLM, api_path: str, api_doc: Dict, with_example: bool = False) -> None:
+    def __init__(self, llm: BaseLanguageModel, api_path: str, api_doc: Dict, with_example: bool = False) -> None:
         if 'responses' not in api_doc or 'content' not in api_doc['responses']:
             llm_parsing_prompt = PromptTemplate(
                 template=LLM_SUMMARIZE_TEMPLATE,

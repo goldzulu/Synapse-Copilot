@@ -29,15 +29,23 @@ cd Synapse-Copilot
 pip install –r requirements.txt
 ```
 
-## **Step 1: Grab your OPENAI key**
+## **Step 1: Grab your OPENAI or AZURE OPENAI keys**
 
-1. Create an OpenAI account and obtain your OpenAI API key [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys).
+1. Create an OpenAI or Azure OpenAI account and obtain your API keys OpenAI [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys) or 
+Azure [https://www.c-sharpcorner.com/article/how-to-get-azure-open-ai-keys-and-endpoint/](https://www.c-sharpcorner.com/article/how-to-get-azure-open-ai-keys-and-endpoint/).
 
 2. Open ```config_starter.yaml``` and replace the placeholder with your OpenAI API key. Make sure the ```use_config_file``` is set to ```true``` to use values
-from the this file. 
+from this file. 
 
 ```yaml
 openai_api_key: "your_openai_api_key"
+```
+
+```yaml
+AZURE_OPENAI_API_VERSION: "2023-05-15"
+AZURE_OPENAI_ENDPOINT: "https://AZURE_RESOURCE.openai.azure.com"
+AZURE_OPENAI_API_KEY: "your_azure_openai_api_key"
+AZURE_OPENAI_DEPLOYMENT_NAME: "GPT4"
 ```
 
 3. Alternatively, I've also added a way to use .env files instead, if you like to use .env file, just copy .env.local to .env and then fill up the keys for this
@@ -139,10 +147,11 @@ You should see something like:
 2. You can now go further if you want and rerun ```run_starter.py``` to delete the board with the id that you have copied above.
 
 ## Next Steps
-
 Watch the YouTube video [Synapse Copilot Starter Tutorial](https://youtu.be/_ilJAjcGjvM) if not already as i go through the code and explain a bit deeper on how things work.
 
-If there is enough interest i will also show how to create a scenario from scratch.
+This starter kit is created as part of a LabLab.ai hackathon. I will be adding more scenarios and features to this starter kit after the hackathon once I backport some of the hackathon code to this repository.
+
+More videos coming soon.
 
 Please open up a github issue to this repository or put some comments on the YouTube video and let me know what you think.
 
